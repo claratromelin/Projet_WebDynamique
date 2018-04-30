@@ -1,0 +1,35 @@
+.menufixe{
+    background:yellow;
+    height:40px;
+    margin-bottom:15px;
+    position:fixed;
+  top:0;
+  z-index:1000;
+}
+.menufixe ul li{
+    float:left;
+    list-style:none
+}
+.menufixe ul li a{
+    line-height:10px;
+    display:block;
+    padding:0 20px;
+}
+h1{
+	margin-top: 50px;
+  text-align: center;
+}
+
+td ,th
+{
+    border: 3px solid yellow;
+    text-align: center;
+}
+table
+{
+    border-collapse: collapse; 
+    position: absolute;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+}
