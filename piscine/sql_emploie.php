@@ -18,5 +18,6 @@ $req = $bdd-> prepare('INSERT INTO '. $table_compte .'(societe, descriptif,mail)
 
 $req->execute(array('societe' => htmlspecialchars($_POST['societe']), 'descriptif' => htmlspecialchars($_POST['descripitif']), 'mail' => htmlspecialchars($_POST['mail'])));
 
- echo "<a href='emploie.php'> Retour page </a>";
+//echo "<a href='emploie.php'> Retour page </a>";
+header('Location: emploie.php');//renvoie direct a la page mentionnée
 ?>
