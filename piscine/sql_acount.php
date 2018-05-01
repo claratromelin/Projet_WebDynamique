@@ -35,11 +35,12 @@ if(isset($_POST['pseudo']) && isset($_POST['mail']) && htmlspecialchars($_POST['
 			die('Erreur :'. $e-> getMessage());
 		}
 
-		$req = $bdd-> prepare('INSERT INTO '. $table_compte .'(pseudo, type,nom,prenom,localisation,langue,competence,interet,profil,couverture,email,promotion,experience,formation,volontariat) 
-		VALUES(:pseudo, :type,:nom,:prenom,:local,:langue,:comp,:interet,:profil,:couv,:email,:promo,:exp,:form,:vol)');
+		$req = $bdd-> prepare('INSERT INTO '. $table_compte .'(pseudo, type,nom,prenom,email,mdp, question ,reponse) 
+		VALUES(:pseudo, :type,:nom,:prenom,:mail,:mdp,:quest,:rep)');
 
 		$reponse = $bdd-> query('SELECT pseudo FROM '.$table_compte.'');
 		$test=false;
+
 		while($donnees = $reponse-> fetch() && $test==false)
 		{
 			if($donnees['pseudo'] == htmlspecialchars($_POST['pseudo']))
@@ -51,24 +52,32 @@ if(isset($_POST['pseudo']) && isset($_POST['mail']) && htmlspecialchars($_POST['
 
 		if($test==false)
 		{
-			$req->execute(array('pseudo'=>htmlspecialchars($_POST['pseudo']),
+			if($_POST['password_confirm']==$_POST['password_new']){
+				$req->execute(array('pseudo'=>htmlspecialchars($_POST['pseudo']),
 				'type'=>'user',
 				 'nom'=>htmlspecialchars($_POST['nom']),
 				  'prenom'=>htmlspecialchars($_POST['prenom']),
-				   'local'=>"", 'langue'=>"", 'comp'=>"",'interet'=>"",
-				   'profil'=>"",'couv'=>"",'email'=>"",'promo'=>"",
-				   'exp'=>"",'form'=>"",'vol'=>""));
-
-			header('Location: index1.php');
+				   'mail'=>htmlspecialchars($_POST['mail']),
+				   'mdp'=>cryptage(htmlspecialchars($_POST['password_confirm']),htmlspecialchars($_POST['reponse'])),
+					'quest'=> $_POST['question'],
+					'rep'=>htmlspecialchars($_POST['reponse'])));
+				header('Location: index1.php');
+			}
+			else{
+				header('Location: addaccount.php?error=Le code est incorrect.');
+				echo "Le code est incorrect.";
+			}
 		}
 		else
 		{
+			header('Location: addaccount.php?error=Votre pseudo est déjà utilisé, merci de bien vouloir en choisir un nouveau.');
 			echo "Votre pseudo est déjà utilisé, merci de bien vouloir en choisir un nouveau.";
 		}
 	}
 }
 else
 {
+	header('Location: addaccount.php?error=Les informations entrées sont incomplètes.');
 	echo "Les informations entrées sont incomplètes";
 }
 ?>

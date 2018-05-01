@@ -5,11 +5,11 @@
 	<meta charset="utf-8">
 	<link href="style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
-	<title>Creation of your account</title>
+	<title>Creation de votre compte</title>
 </head>
 <body>
 	<div id="body">
-		<h3>Pour créer un compte, il vous faut entrer un pseudo puis un mail:</h3><br>
+		<h3>Pour créer un compte, il vous faut entrer un pseudo, un mail puis votre mot de passe:</h3><br>
 	<form method="post" action="sql_acount.php">
 		<p>Entrez le pseudo:
 			<input type="text" name="pseudo" class="txt"> <br>
@@ -33,8 +33,12 @@
 				<option value="question4">Quel est votre film préféré ?</option>
 			</select>
 			et entrez votre réponse:
-			<input type="text" name="answer" class="txt">
-			<input type="submit" value="SUBMIT" class="bouton">
+			<input type="text" name="reponse" class="txt">
+			<input type="submit" value="Valider" class="bouton"><br>
+			<?php 
+			if(isset($_GET['error']))
+				echo $_GET['error']; 
+			?>
 		</p>
 	</form>
 	</div>

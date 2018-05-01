@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<link href="style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
-	<title>Connexion</title>
+	<title>Connection</title>
 </head>
 <body>
 	<!--<div id="header">
@@ -15,10 +15,11 @@
 		<h2>Pour avoir accès à votre compte, entrez votre pseudo et le mail associé:</h2><br>
 		<form method="post" action="verif_access.php">
 			<p>
-				<input type="text" name="text_name" class="txt">
-				<input type="text" name="mail" class="txt">
-				<!--<input type="password" name="password_secret" class="txt">-->
-				<input type="submit" value="Submit" class="bouton">
+				Pseudo: <input type="text" name="text_name" class="txt"><br>
+				Email: <input type="text" name="mail" class="txt"><br>
+				Mot de passe: <input type="password" name="password_secret" class="txt"><br>
+				<input type="submit" value="Valider" class="bouton"> <br>
+				<?php echo $_GET['error']; ?><br>
 			</p>
 		</form>
 		<form action="addaccount.php">
