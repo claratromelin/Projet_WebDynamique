@@ -8,7 +8,7 @@
     return $encrypted_string;
 }*/
 
-/*function cryptage($text,$key) {
+function cryptage($text,$key) {
 	$text_num =str_split("fYfhHeDm",8);
 	$text_num = 8-strlen($text_num[count($text_num)-1]);
 	for ($i=0;$i<$text_num; $i++) 
@@ -18,9 +18,9 @@
 	$decrypted = mcrypt_generic($cipher,$text);
 	mcrypt_generic_deinit($cipher);
 	return base64_encode($decrypted);
-}*/
+}
 
-if(isset($_POST['pseudo']) && isset($_POST['mail'])/* && $_POST['password_new'] == $_POST['password_confirm']*/)
+if(isset($_POST['pseudo']) && isset($_POST['mail']) && htmlspecialchars($_POST['password_new']) == htmlspecialchars($_POST['password_confirm']))
 {
 	if(strlen($_POST['pseudo'])<255)
 	{
@@ -35,7 +35,9 @@ if(isset($_POST['pseudo']) && isset($_POST['mail'])/* && $_POST['password_new'] 
 			die('Erreur :'. $e-> getMessage());
 		}
 
-		$req = $bdd-> prepare('INSERT INTO '. $table_compte .'(pseudo, type,nom,prenom,localisation,langue,competence,interet,profil,couverture,email,promotion,experience,formation,volontariat) VALUES(:pseudo, :type,:nom,:prenom,:local,:langue,:comp,:interet,:profil,:couv,:email,:promo,:exp,:form,:vol)');
+		$req = $bdd-> prepare('INSERT INTO '. $table_compte .'(pseudo, type,nom,prenom,localisation,langue,competence,interet,profil,couverture,email,promotion,experience,formation,volontariat) 
+		VALUES(:pseudo, :type,:nom,:prenom,:local,:langue,:comp,:interet,:profil,:couv,:email,:promo,:exp,:form,:vol)');
+
 		$reponse = $bdd-> query('SELECT pseudo FROM '.$table_compte.'');
 		$test=false;
 		while($donnees = $reponse-> fetch() && $test==false)
@@ -49,9 +51,15 @@ if(isset($_POST['pseudo']) && isset($_POST['mail'])/* && $_POST['password_new'] 
 
 		if($test==false)
 		{
-			$req->execute(array(htmlspecialchars('pseudo'=>$_POST['pseudo'],'type'=>'user', 'nom'=>$_POST['nom'], 'prenom'=>$_POST['prenom'], 'local'=>"", 'langue'=>"", 'comp'=>"",'interet'=>"",'profil'=>"",'couv'=>"",'email'=>"",'promo'=>"",'exp'=>"",'form'=>"",'vol'=>""))));
+			$req->execute(array('pseudo'=>htmlspecialchars($_POST['pseudo']),
+				'type'=>'user',
+				 'nom'=>htmlspecialchars($_POST['nom']),
+				  'prenom'=>htmlspecialchars($_POST['prenom']),
+				   'local'=>"", 'langue'=>"", 'comp'=>"",'interet'=>"",
+				   'profil'=>"",'couv'=>"",'email'=>"",'promo'=>"",
+				   'exp'=>"",'form'=>"",'vol'=>""));
 
-			header('Location: index.php');
+			header('Location: index1.php');
 		}
 		else
 		{

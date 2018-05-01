@@ -9,7 +9,7 @@
     return $decrypted_string;
 }*/
 
-/*function decrypt($encrypted_text,$key){
+function decrypt($encrypted_text,$key){
 	$iv="fYfhHeDm";
 	$bit_check=8;
 	$cipher = mcrypt_module_open(MCRYPT_TRIPLEDES,'','cbc','');
@@ -24,7 +24,7 @@
 	    }
 	}
 	return $decrypted;
-}*/
+}
 
 $Base='piscine';
 $table_compte='Compte';
@@ -51,29 +51,29 @@ while($donnees = $reponse-> fetch())
 		{
 			$test2=true;
 			$_SESSION['id']=$donnees['id_compte'];
-			$_SESSION['formation'] = 'formation_'.$donnees['id_compte'];
-			$_SESSION['experience'] = 'experience_'.$donnees['id_compte'];
-			$_SESSION['volontariat'] = 'volontariat_'.$donnees['id_compte'];
+			//$_SESSION['formation'] = 'formation_'.$donnees['id_compte'];
+			//$_SESSION['experience'] = 'experience_'.$donnees['id_compte'];
+			//$_SESSION['volontariat'] = 'volontariat_'.$donnees['id_compte'];
 		}
-		/*else if(decrypt(htmlspecialchars($donnees['password']),$donnees['reponse']) != $_POST['password_secret'])
+		else if(decrypt(htmlspecialchars($donnees['password']),$donnees['reponse']) != $_POST['password_secret'])
 			echo " nouvo";
 		else if(decrypt(htmlspecialchars($donnees['password']),$donnees['reponse']) !== $_POST['password_secret'])
-			echo "out of the if";*/
+			echo "out of the if";
 	}
 }
 $reponse->closeCursor();
 
-//$modif = $bdd -> prepare('UPDATE '. $table_compte .' SET visits = :incremt WHERE groupe_name = :nom');
+$modif = $bdd -> prepare('UPDATE '. $table_compte .' SET visits = :incremt WHERE groupe_name = :nom');
 
 if($test1==true)
 {
 	if($test2==true)
 	{
-		//$modif->execute(array('incremt' => $visits + 1, 'nom' => htmlspecialchars($_POST['text_name']) ));
-		//echo $_SESSION['groupe'];
-		//echo "<br>";
-		//echo $_SESSION['coment'];
-		//header('Location: first_visit.php');
+		$modif->execute(array('incremt' => $visits + 1, 'nom' => htmlspecialchars($_POST['text_name']) ));
+		echo $_SESSION['groupe'];
+		echo "<br>";
+		echo $_SESSION['coment'];
+		header('Location: index1.php');///////// a remplir avec la page d'accueil après connexion/////////
 	}
 	else
 		echo "Votre mail ne correspond pas.";

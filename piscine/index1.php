@@ -21,7 +21,7 @@
 				<input type="submit" value="Submit" class="bouton">
 			</p>
 		</form>
-		<!--<form action="addaccount.php">
+		<form action="addaccount.php">
 			<p>
 				<input type="submit" value="Céer un compte" class="bouton">
 			</p>
@@ -30,7 +30,7 @@
 			<p>
 				<input type="submit" value="Avez-vous oublié votre mot de passe ?" class="bouton">
 			</p>
-		</form>-->
+		</form>
 	</div>
 </body>
 </html>

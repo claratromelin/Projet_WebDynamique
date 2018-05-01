@@ -20,20 +20,20 @@
 			Entrez le prénom:
 			<input type="text" name="prenom" class="txt"> <br>
 			
-			<!--Tape the password:
+			Entrer votre mot de passe:
 			<input type="password" name="password_new" class="txt">
-			Confirm your password:
+			Confirmer votre mot de passe:
 			<input type="password" name="password_confirm" class="txt">
 			<br>
-			Choose a secret question: 
+			Choisissez votre question secrète (faite une réponse en un mot):
 			<select name="question">
-				<option value="question1">What animal would you like to have in your room mate ?</option>
-				<option value="question2">What kind of videogame do you play together in your room mate ?</option>
-				<option value="question3">What is the faverite plate of your room mate ?</option>
-				<option value="question4">In what city is the flat/house of your room mate ?</option>
+				<option value="question1">Quel est le prénom de votre animal ?</option>
+				<option value="question2">Quel est le prénom de votre grand-mère ?</option>
+				<option value="question3">Quel votre lieu préféré pour partir en vacance ?</option>
+				<option value="question4">Quel est votre film préféré ?</option>
 			</select>
-			and tape your answer:
-			<input type="text" name="answer" class="txt">-->
+			et entrez votre réponse:
+			<input type="text" name="answer" class="txt">
 			<input type="submit" value="SUBMIT" class="bouton">
 		</p>
 	</form>
