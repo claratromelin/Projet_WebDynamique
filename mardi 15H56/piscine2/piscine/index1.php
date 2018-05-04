@@ -19,7 +19,9 @@
 				Email: <input type="text" name="mail" class="txt"><br>
 				Mot de passe: <input type="password" name="password_secret" class="txt"><br>
 				<input type="submit" value="Valider" class="bouton"> <br>
-				<?php echo $_GET['error']; ?><br>
+				<?php 
+				if(isset($_GET['error']))
+					echo $_GET['error']; ?><br>
 			</p>
 		</form>
 		<form action="addaccount.php">
