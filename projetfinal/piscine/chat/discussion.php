@@ -1,9 +1,30 @@
 <?php session_start();
+$_SESSION['pseudo']="viv";
 include("../connexionBDD.php");
 include("conversations.php");
 //require_once('./xajax_core/xajax.inc.php');
+echo"<link rel='stylesheet' href='../bootstrap.css' />";
 
-$_SESSION['pseudo']="viv";
+echo"<nav class='navbar navbar-inverse navbar-fixed-top'>
+  <div class='container-fluid'>
+    <div class='navbar-header'>
+      <a class='navbar-brand' href='../accueil.php'>Accueil</a>
+    </div>
+    <ul class='nav navbar-nav'>
+        <li><a href='../profil.php'>Mon Profil</a></li>
+        <li ><a href='../emploie.php'>Emplois</a></li>
+        <li><a href='../resaux.php'>Mon Résaux</a></li>
+        <li ><a href='../notifications.php'>Notifications</a></li>
+        <li class='active'><a href='discussion.php'>Messagerie</a></li>
+        <li><a href='../administration.php'>Administration</a></li>
+        <li><a href='../rechercher.php'>Rechercher</a></li>
+        <li><a href='../index1.php'>Deconnexion</a></li>
+    </ul>
+  </div>
+</nav>";
+
+
+
 if(isset($_GET['change']))
 	$_SESSION['discu']=$_GET['change'];
 //$_SESSION['pseudo']=;
@@ -26,8 +47,11 @@ while($donnees2 = $req2-> fetch())
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<div class="container" style="margin-top:50px">
 <head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
 	<title>Discussion</title>
 	<script type="text/javascript" src="oXHR.js"></script>
 	<script type="text/javascript">
@@ -138,7 +162,11 @@ while($donnees2 = $req2-> fetch())
 	}
 	</script>
 </head>
+</div>
+
 <body>
+<div class="container" style="margin-top:50px">
+
 	<?php
 	if(isset($_SESSION['titre']))
 	{
@@ -150,8 +178,9 @@ while($donnees2 = $req2-> fetch())
 	}
 	?>
 	<h1></h1>
-	<fieldset>
-	<div id="messages">
+	<fieldset >
+	<div id="messages" overflow-x:scroll>
+		
 		<?php
 		if(isset($_SESSION['discu']))
 		{
@@ -176,17 +205,20 @@ while($donnees2 = $req2-> fetch())
 			}
 		}
 		?>
+	
 	</div>
 	</fieldset>
 	<fieldset>
 		<div id="envoie">
 			<textarea id="zone_text"></textarea><br>
-			<input type="button" onclick="request(readData);" value="Envoyer" id="post" />
+			<input type="button"  onclick="request(readData);" value="Envoyer" id="post" />
 		</div>
 	</fieldset>
 	<script type="text/javascript">
 		var repeat = window.setInterval(getmessage,1000);
 		console.log("test");
 	</script>
+</div>
 </body>
+
 </html>

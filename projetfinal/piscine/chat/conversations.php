@@ -1,25 +1,5 @@
-<script type="text/javascript">
-	/*function change(callback,id){
-		var xhr = getXMLHttpRequest();
-		//console.log("1");
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				affiche(xhr.responseXML);
-			}
-		};
-		//var message = document.getElementById("messages");
-		//var textm = encodeURIComponent(document.getElementById("zone_text").value);
-		//var name = encodeURIComponent(document.getElementById("name").value);
-		
-		xhr.open("GET", "change.php?change="+id, true);
-		xhr.send(null);
-	}
-	function read(oChange){
-		
-	}*/
-</script>
-
 <?php  
+echo"<div class='container' style='margin-top:70px'>";
 $req1 = $bdd->query('SELECT compte.pseudo AS pseudo, compte.prenom AS prenom, compte.nom AS nom, compte.profil AS profil FROM compte INNER JOIN ami WHERE ((compte.pseudo=ami.pseudo1 AND ami.pseudo2=\''.$_SESSION['pseudo'].'\') OR (compte.pseudo=ami.pseudo2 AND ami.pseudo1=\''.$_SESSION['pseudo'].'\'))');
 
 echo "<form method=\"POST\" action=\"new_disc.php\">
@@ -36,11 +16,13 @@ echo	"</select><br></label>
 
 $req = $bdd->query("SELECT discussion.id_discussion AS id, discussion.titre AS titre FROM discussion LEFT JOIN message ON discussion.id_discussion=message.id_discussion WHERE discussion.pseudo1='".$_SESSION['pseudo']."' OR discussion.pseudo2='".$_SESSION['pseudo']."' GROUP BY discussion.id_discussion ORDER BY message.id_message, discussion.id_discussion DESC");
 while($donnees = $req->fetch()){
+	echo"</div>";
 	?>
-
+<div class="container" style="margin-top:70px">
 	<a href="discussion.php?change=<?php echo $donnees['id'];?>" >
 		<h4><?php echo $donnees['titre'];?></h4>
 	</a>
+</div>
 	<?php
 }
 ?>
